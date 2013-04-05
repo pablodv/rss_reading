@@ -7,9 +7,14 @@ gem 'jquery-rails'
 
 gem 'pg'
 
+group :test do
+  gem "capybara"
+  gem "shoulda-matchers"
+  gem "simplecov", require: false
+end
+
 group :test, :development do
   gem "rspec-rails",        '2.10.1'
-  gem "capybara"
   gem "factory_girl_rails", '3.4.0'
 end
 

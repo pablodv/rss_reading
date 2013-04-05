@@ -16,3 +16,6 @@
 
 # Ignore config files
 database.yml
+
+#Ignore spec report
+/coverage/
