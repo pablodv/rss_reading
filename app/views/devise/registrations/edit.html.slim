@@ -23,6 +23,10 @@ h2
       br
     = f.file_field :avatar
   div
+    = f.label :profile_type
+    br/
+    = f.select :profile_type, User::PROFILES, include_blank: true
+  div
     = f.label :password
     i (leave blank if you don't want to change it)
     br/

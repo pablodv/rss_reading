@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  PROFILES = ["basic - 10 channels", "medium - 20 channels", "premium - 100 channels"]
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -7,7 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :first_name, :last_name, :email, :password,
-                  :password_confirmation, :remember_me, :avatar
+                  :password_confirmation, :remember_me, :avatar, :profile_type
 
   validates :username, :first_name, :last_name, presence: true, length: {maximum: 50}
 
