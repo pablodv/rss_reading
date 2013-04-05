@@ -1,0 +1,16 @@
+common: &common
+  adapter: postgresql
+  username: postgres
+  password: 123456
+
+development:
+  <<: *common
+  database: rss-reading_development
+
+test:
+  <<: *common
+  database: rss-reading_test
+
+production:
+  <<: *common
+  database: rss-reading_production
