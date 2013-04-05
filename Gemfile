@@ -35,3 +35,4 @@ gem "slim"
 gem "slim-rails"
 gem 'activeadmin'
 gem "meta_search", '>= 1.1.0.pre'
+gem "paperclip",   '~> 3.0'
