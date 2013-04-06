@@ -10,6 +10,7 @@ gem 'pg'
 group :test do
   gem "capybara"
   gem "shoulda-matchers"
+  gem "database_cleaner"
   gem "simplecov", require: false
 end
 
@@ -33,6 +34,11 @@ end
 
 gem "slim"
 gem "slim-rails"
+
 gem 'activeadmin'
 gem "meta_search", '>= 1.1.0.pre'
+
 gem "paperclip",   '~> 3.0'
+
+gem "omniauth-google-oauth2"
+gem "omniauth-twitter"

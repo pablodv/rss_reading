@@ -24,6 +24,7 @@ RSpec.configure do |config|
   # config.mock_with :rr
 
   config.include Paperclip::Shoulda::Matchers
+  config.include Devise::TestHelpers, type: :controller
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -40,4 +41,22 @@ RSpec.configure do |config|
 
   #Include Factory Girl sintax to simplify calls to factories
   config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.add_mock(:twitter, {
+  uid: '12345',
+  info: { nickname: 'ghost', first_name: "Pepe", last_name: "Hongo", email: "pepe@rss.com" }})

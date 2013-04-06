@@ -214,6 +214,18 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+  require "omniauth-google-oauth2"
+  require "omniauth-twitter"
+
+  config.omniauth :google_oauth2,
+    "270710758682-s3gchltioln42m0m3c92jja4npa1ohne.apps.googleusercontent.com",
+    "7jRwq3gnaRkYQ1x2PjIEiPS_",
+    { access_type: "offline", approval_prompt: "" }
+
+  config.omniauth :twitter,
+    "tNCl14DDYHQBMHvkVw",
+    "Gyh8mN9MjABZV6diljhFn8b9TC0zQuZpCQCbOuqo34",
+    strategy_class: OmniAuth::Strategies::Twitter
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
