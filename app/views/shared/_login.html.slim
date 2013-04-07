@@ -1,0 +1,23 @@
+.pull-right
+  - if current_user
+      .btn-group
+        a.btn href="#"
+          i.icon-user.icon-white 
+          | User
+
+        a.btn.dropdown-toggle data-toggle="dropdown" href="#"
+          span.caret
+
+        ul.dropdown-menu
+          li= link_to edit_user_registration_path do
+            i.icon-pencil
+            | Edit Profile
+          li= link_to destroy_user_session_path, method: :delete do
+            i.icon-trash
+            | Sign out
+
+  - else
+    = form_for "user", url: user_session_path, html: {class: "navbar-form"} do |f|
+      = f.text_field :username, class: "span2", placeholder: "Username"
+      = f.password_field :password, class: "span2", placeholder: "Password"
+      = f.button "Sign in", class: "btn"
