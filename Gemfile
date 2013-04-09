@@ -8,7 +8,9 @@ gem 'jquery-rails'
 gem 'pg'
 
 group :test do
+  gem "cucumber-rails", require: false
   gem "capybara"
+  gem "launchy"
   gem "shoulda-matchers"
   gem "database_cleaner"
   gem "simplecov", require: false

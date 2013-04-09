@@ -8,5 +8,6 @@ FactoryGirl.define do
     sequence(:email) { |n| "user_#{n}@rss.com" }
     password "12345678"
     password_confirmation "12345678"
+    confirmed_at 2.day.ago
   end
 end

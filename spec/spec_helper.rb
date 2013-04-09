@@ -9,6 +9,9 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require "paperclip/matchers"
+require 'shoulda/matchers/integrations/rspec'
+require 'capybara/rails'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -59,4 +62,7 @@ end
 OmniAuth.config.test_mode = true
 OmniAuth.config.add_mock(:twitter, {
   uid: '12345',
-  info: { nickname: 'ghost', first_name: "Pepe", last_name: "Hongo", email: "pepe@rss.com" }})
+  info: { nickname: 'ghost', first_name: "Pepe", last_name: "Hongo" }})
+OmniAuth.config.add_mock(:google_oauth2, {
+  uid: '54321',
+  info: { first_name: "Pepe", last_name: "Hongo", email: "pepe@rss.com" }})
