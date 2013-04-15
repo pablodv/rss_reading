@@ -1,15 +1,14 @@
 .hero-unit
-  .row
-    .span5
+  .row-fluid
+    .span6
       h1 RSS Reader
       p With RSS Reader, keep up with your favorite websites is as easy as checking your email.
       p RSS Reader constantly visit your favorite sites and blogs looking for new content.
       p With integrated public page RSS Reader can share anything you want with your family and friends.
       p RSS Reader is a brand new product that works with most modern browsers without installing any software.
-      .row
-        .span2
+      .row-fluid
+        .span5
           = link_to "Sign in with Twitter", omniauth_authorize_path(resource_name, :twitter), class: "btn btn-primary btn-large"
-        .span2.offset1
+        .span5.offset2
           = link_to "Sign in with Google", omniauth_authorize_path(resource_name, :google_oauth2), class: "btn btn-primary btn-large"
-    .span5
-      = render file: "devise/registrations/new"
+    .span6= render file: "devise/registrations/new"

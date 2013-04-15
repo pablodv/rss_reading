@@ -1,0 +1,17 @@
+.page-header
+  = link_to [:new, current_user, :channel], class: "btn btn-danger" do
+    i.icon-plus
+    |  Add Feed
+
+.span3
+  .well.sidebar-nav
+    ul
+      - @channels.each do |channel|
+        li
+          = link_to channel.name, [current_user, channel]
+          = link_to [:edit, current_user, channel], class: "btn btn-mini btn-info" do
+            i.icon-pencil
+          = link_to [current_user, channel], method: :delete, confirm: "Are you sure?", class: "btn btn-mini btn-danger" do
+            i.icon-trash
+
+.span9

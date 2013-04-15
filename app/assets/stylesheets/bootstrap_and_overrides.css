@@ -11,4 +11,7 @@ body {
   padding-bottom: 40px;
 }
 
-.hero-unit .row .span5 h2{ text-align: center; }
+.hero-unit .row-fluit .span5 h2{ text-align: center; }
+
+.well.sidebar-nav ul li{ list-style: none; }
+.well.sidebar-nav ul li a{ margin: 5px; }

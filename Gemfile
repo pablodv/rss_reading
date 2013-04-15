@@ -44,3 +44,5 @@ gem "paperclip",   '~> 3.0'
 
 gem "omniauth-google-oauth2"
 gem "omniauth-twitter"
+
+gem "feedzirra"

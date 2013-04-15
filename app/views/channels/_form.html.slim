@@ -1,0 +1,13 @@
+= form_for [current_user, @channel], html: {class: "form-horizontal"} do |f|
+  - if @channel.new_record?
+    .control-group
+      = f.label :url, class: "control-label"
+      .controls= f.text_field :url
+  - else
+    .control-group
+      = f.label :name, class: "control-label"
+      .controls= f.text_field :name
+
+  .control-group
+    .controls= f.button "Save Channel", class: "btn btn-success"
+

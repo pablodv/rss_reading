@@ -21,17 +21,13 @@ html lang="en"
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
-          a.brand href="#"RssReading
-          .nav-collapse.collapse
-            ul.nav
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
-            = render "shared/login"
+          = link_to "RssReading", current_user.present? ? [[current_user, :channels]] : root_path, class: "brand"
+          .nav-collapse.collapse= render "shared/login"
 
-    .container
-      = bootstrap_flash
-      = yield
+    .container-fluid
+      .row-fluid
+        = bootstrap_flash
+        = yield
 
       footer
         p &copy; Company 2013

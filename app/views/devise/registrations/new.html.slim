@@ -26,7 +26,7 @@ h2 Sign up
     .controls= f.password_field :password_confirmation
 
   .control-group
-    .controls= f.button "Sign up", class: "btn"
+    .controls= f.button "Sign up", class: "btn btn-success"
 
   .control-group
     - if devise_mapping.recoverable? && controller_name != 'passwords'
