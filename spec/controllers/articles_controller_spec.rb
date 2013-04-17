@@ -14,6 +14,7 @@ describe ArticlesController do
     @channel.stub!(:first).and_return(@channel)
     @channel.stub!(:articles).and_return(@articles)
     @articles.stub!(:most_recent).and_return(@articles)
+    @articles.stub!(:includes).and_return(@articles)
   end
 
   describe "#index" do
@@ -33,6 +34,7 @@ describe ArticlesController do
     it "finds the articles of the current channel" do
       @channel.should_receive(:articles).and_return(@articles)
       @articles.should_receive(:most_recent).and_return(@articles)
+      @articles.should_receive(:includes).with(:users_articles).and_return(@articles)
       get :index, user_id: 1, channel_id: 1, format: :js
     end
 

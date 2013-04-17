@@ -4,6 +4,8 @@ describe User do
   describe "Associations" do
     it { should have_many(:authentications) }
     it { should have_many(:channels) }
+    it { should have_many(:users_articles) }
+    it { should have_many(:favorites).through(:users_articles) }
   end
 
   describe "Validations" do

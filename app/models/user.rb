@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :authentications
   has_many :channels
+  has_many :users_articles
+  has_many :favorites, through: :users_articles, source: :article
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

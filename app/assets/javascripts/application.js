@@ -15,15 +15,16 @@
 //= require twitter/bootstrap
 
 function showDescription(){
-  $("tr.parent").on("click", function(){
+  $("td.parent").on("click", function(){
 
-    child = $(this).next("tr.child")
+    parent = $(this).parent()
+    child = parent.next("tr.child")
 
     if (child.hasClass("hide")){
-      $(this).addClass("info")
+      parent.addClass("info")
       child.removeClass("hide")
     } else {
-      $(this).removeClass("info")
+      parent.removeClass("info")
       child.addClass("hide")
     }
   });

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Article do
   describe "Associations" do
     it { should belong_to :channel }
+    it { should have_many :users_articles }
   end
 
   describe "Validations" do
@@ -11,7 +12,7 @@ describe Article do
       it { should validate_presence_of :link }
       it { should validate_presence_of :description }
       it { should validate_presence_of :published_at }
-      it { should validate_presence_of :channel }
+      it { should validate_presence_of :channel_id }
     end
 
     describe "Uniqness" do

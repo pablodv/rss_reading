@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :article do
-    title "MyString"
-    link "MyString"
+    title "My title"
+    link "http://www.google.com"
     description "MyText"
-    publicated_at "2013-04-16 14:32:01"
+    published_at "2013-04-16 14:32:01"
     channel_id 1
   end
 end

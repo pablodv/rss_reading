@@ -1,10 +1,10 @@
-h2= @channel.name
+h2= title
 
 table.table.table-condensed.table-hover
-  - @articles.each do |article|
-    tr.parent
-      td
-      td
+  - articles.each do |article|
+    tr
+      td{ id=article.id }= link_to_favorite(current_user, article)
+      td.parent
         strong= article.title
       td= article.published_at.strftime("%d/%m/%Y")
       td= link_to article.link, target: "_blank" do

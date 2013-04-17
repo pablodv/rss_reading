@@ -3,6 +3,6 @@ class ArticlesController < ApplicationController
 
   def index
     @channel = current_user.channels.where(id: params[:channel_id]).first
-    @articles = @channel.articles.most_recent
+    @articles = @channel.articles.most_recent.includes(:users_articles)
   end
 end

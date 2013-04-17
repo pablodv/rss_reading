@@ -4,9 +4,17 @@
     |  Add Feed
 
 .span3
+  h5= link_to [current_user, :channels] do
+    | Home 
+    i.icon-home
+  h5= link_to [current_user, :favorites], remote: true do
+    | Favorites 
+    i.icon-forward
+
   - if @channels.present?
-    .well.well-small.sidebar-nav
+    .well.well-small
       ul
+        li.nav-header My channel
         - @channels.each do |channel|
           li
             = link_to channel.name, [current_user, channel, :articles], remote: true, class: "articles"

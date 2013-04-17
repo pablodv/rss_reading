@@ -13,5 +13,11 @@ body {
 
 .hero-unit .row-fluit .span5 h2{ text-align: center; }
 
-.well.sidebar-nav ul li{ list-style: none; }
-.well.sidebar-nav ul li a{ margin: 5px; }
+.well.well-small ul{
+  list-style: none;
+  margin: 0px;
+}
+.well.well-small ul li{ list-style: none; }
+.well.well-small ul li a{ margin: 5px; }
+
+.favorite:hover{ text-decoration: none; }
