@@ -3,6 +3,7 @@ require 'feedzirra'
 
 class Channel < ActiveRecord::Base
   belongs_to :user
+  has_many :articles
 
   attr_accessible :name, :url, :user_id
 

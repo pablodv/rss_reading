@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+
+function showDescription(){
+  $("tr.parent").on("click", function(){
+
+    child = $(this).next("tr.child")
+
+    if (child.hasClass("hide")){
+      $(this).addClass("info")
+      child.removeClass("hide")
+    } else {
+      $(this).removeClass("info")
+      child.addClass("hide")
+    }
+  });
+}

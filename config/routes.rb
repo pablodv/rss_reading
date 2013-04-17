@@ -5,6 +5,8 @@ RssReading::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :users do
-    resources :channels
+    resources :channels do
+      resources :articles, only: [:index]
+    end
   end
 end

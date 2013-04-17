@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Channel do
   describe "Associations" do
     it { should belong_to :user }
+    it { should have_many :articles }
   end
 
   describe "Validations" do

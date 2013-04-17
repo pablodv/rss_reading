@@ -4,14 +4,23 @@
     |  Add Feed
 
 .span3
-  .well.sidebar-nav
-    ul
-      - @channels.each do |channel|
-        li
-          = link_to channel.name, [current_user, channel]
-          = link_to [:edit, current_user, channel], class: "btn btn-mini btn-info" do
-            i.icon-pencil
-          = link_to [current_user, channel], method: :delete, confirm: "Are you sure?", class: "btn btn-mini btn-danger" do
-            i.icon-trash
+  - if @channels.present?
+    .well.well-small.sidebar-nav
+      ul
+        - @channels.each do |channel|
+          li
+            = link_to channel.name, [current_user, channel, :articles], remote: true, class: "articles"
+            = link_to [:edit, current_user, channel], class: "btn btn-mini btn-info" do
+              i.icon-pencil
+            = link_to [current_user, channel], method: :delete, confirm: "Are you sure?", class: "btn btn-mini btn-danger" do
+              i.icon-trash
+  - else
+    | Not feeds added yet.
 
-.span9
+.span8
+  - @channels.each do |channel|
+    h3
+      = link_to channel.name, [current_user, channel, :articles], remote: true, class: "articles"
+      small= " (#{channel.articles_count})"
+    strong= channel.articles.first.title
+    p= channel.articles.first.description

@@ -1,0 +1,15 @@
+h2= @channel.name
+
+table.table.table-condensed.table-hover
+  - @articles.each do |article|
+    tr.parent
+      td
+      td
+        strong= article.title
+      td= article.published_at.strftime("%d/%m/%Y")
+      td= link_to article.link, target: "_blank" do
+        i.icon-resize-full
+    tr.child.hide
+      td{ colspan=4 }= article.description
+
+= javascript_tag "showDescription();"

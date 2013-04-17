@@ -46,3 +46,5 @@ gem "omniauth-google-oauth2"
 gem "omniauth-twitter"
 
 gem "feedzirra"
+
+gem 'whenever', require: false
