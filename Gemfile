@@ -17,7 +17,7 @@ group :test do
 end
 
 group :test, :development do
-  gem "rspec-rails",        '2.10.1'
+  gem "rspec-rails",        '2.12'
   gem "factory_girl_rails", '3.4.0'
 end
 

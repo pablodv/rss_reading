@@ -1,0 +1,6 @@
+| Hello, #{ @user.first_name } we are sending your last feeds in RSS Reading.
+
+- @articles.each do |article|
+  p
+    = link_to article.title, article.link
+    = article.description

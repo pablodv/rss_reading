@@ -10,5 +10,5 @@ class Article < ActiveRecord::Base
   validates :link, presence: true, format: { with: ValidFormats::URL }
   validates :channel_id, :description, :published_at, presence: true
 
-  scope :most_recent, order("published_at DESC")
+  scope :most_recents, order("published_at DESC")
 end
