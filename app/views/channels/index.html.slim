@@ -11,6 +11,12 @@
     | Favorites 
     i.icon-forward
 
+  .navbar
+    .navbar-inner
+      .container
+        = form_tag search_path, method: :get, remote: true, class: "navbar-search" do
+          = text_field_tag :query, params[:query], autocomplete: :off, placeholder: 'Search', class: "search-query"
+
   - if @channels.present?
     .well.well-small
       ul
@@ -30,5 +36,6 @@
     h3
       = link_to channel.name, [current_user, channel, :articles], remote: true, class: "articles"
       small= " (#{channel.articles_count})"
-    strong= channel.articles.first.title
-    p= channel.articles.first.description
+    - if channel.articles.present?
+      strong= channel.articles.first.title
+      p= channel.articles.first.description.html_safe

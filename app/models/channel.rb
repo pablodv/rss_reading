@@ -5,6 +5,9 @@ class Channel < ActiveRecord::Base
   belongs_to :user
   has_many :articles
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   attr_accessible :name, :url, :user_id
 
   validates :user_id, presence: true
@@ -12,6 +15,14 @@ class Channel < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { scope: :user_id }
 
   before_validation :fetch_and_validate_feed, on: :create
+
+  def self.search(params)
+    query = params[:query]
+
+    tire.search(load: true) do
+      query { string "*#{query}*", default_operator: "AND" } if query.present?
+    end
+  end
 
   private
 

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :article do
-    title "My title"
+    sequence(:title) { |n| "My title #{n}"}
     link "http://www.google.com"
     description "MyText"
     published_at "2013-04-16 14:32:01"

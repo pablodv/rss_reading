@@ -12,6 +12,8 @@ RssReading::Application.routes.draw do
     resources :favorites, only: [:index]
   end
 
+  get :search, to: "search#index"
+
   match 'users/:user_id/favorite/:article_id' => 'favorites#create', as: :create_favorite, via: :post
   match 'users/:user_id/favorite/:article_id' => 'favorites#destroy', as: :destroy_favorite, via: :delete
 end

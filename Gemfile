@@ -14,6 +14,7 @@ group :test do
   gem "shoulda-matchers"
   gem "database_cleaner"
   gem "simplecov", require: false
+  gem "webmock", require: nil
 end
 
 group :test, :development do
@@ -48,3 +49,5 @@ gem "omniauth-twitter"
 gem "feedzirra"
 
 gem 'whenever', require: false
+
+gem "tire"

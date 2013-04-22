@@ -1,0 +1,29 @@
+h2
+  | Search results for 
+  = params[:query]
+
+h3 Channels
+
+- @channels.each do |channel|
+  h4
+    = link_to channel.name, [current_user, channel, :articles], remote: true, class: "articles"
+    small= " (#{channel.articles_count})"
+  -if channel.articles.present?
+    strong= channel.articles.first.title
+    p= channel.articles.first.description.html_safe
+
+h3 Articles
+
+table.table.table-condensed.table-hover
+  - @articles.each do |article|
+    tr
+      td{ id=article.id }= link_to_favorite(current_user, article)
+      td.parent
+        strong= article.title
+      td= article.published_at.strftime("%d/%m/%Y")
+      td= link_to article.link, target: "_blank" do
+        i.icon-resize-full
+    tr.child.hide
+      td{ colspan=4 }= article.description
+
+= javascript_tag "showDescription();"
