@@ -16,4 +16,8 @@ RssReading::Application.routes.draw do
 
   match 'users/:user_id/favorite/:article_id' => 'favorites#create', as: :create_favorite, via: :post
   match 'users/:user_id/favorite/:article_id' => 'favorites#destroy', as: :destroy_favorite, via: :delete
+
+  unless Rails.application.config.consider_all_requests_local
+    match '*not_found', to: 'application#error_404'
+  end
 end
