@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:google_oauth2, :twitter]
+         :omniauthable, omniauth_providers: [:google_oauth2, :twitter],
+         authentication_keys: [:username]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :first_name, :last_name, :email, :password,
