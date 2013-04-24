@@ -32,14 +32,30 @@ describe Channel do
 
   describe "Callbacks" do
     describe "Before Validation" do
-      let(:channel){ FactoryGirl.build(:channel, name: nil, url: nil) }
+      before do
+        raw_response_file = File.open(File.join(Rails.root, "spec/support/feed.xml"))
+        stub_request(:get, "http://feeds.feedburner.com/railscasts").to_return(body: raw_response_file)
+      end
 
       describe "fetch and validate feet" do
+        let(:channel){ FactoryGirl.build(:channel, name: nil, url: "http://feeds.feedburner.com/railscasts") }
+
         context "with valid url" do
-          it "takes the channel title"
+          it "does not take the channel title" do
+            channel.send(:fetch_and_validate_feed)
+            channel.name.should_not be_nil
+          end
+
+          it "takes the channel title" do
+            lambda {
+              channel.save
+            }.should change(channel, :name).from(nil).to("RailsCasts")
+          end
         end
 
         context "without valid url" do
+          let(:channel){ FactoryGirl.build(:channel, name: nil, url: "http://foo.feed") }
+
           it "does not take the channel title" do
             channel.send(:fetch_and_validate_feed)
             channel.name.should be_nil
@@ -57,7 +73,11 @@ describe Channel do
           channel.save
         end
 
-        it "does not called by a exiting channel"
+        it "does not called by a exiting channel" do
+          channel = FactoryGirl.create(:channel, name: nil, url: "http://feeds.feedburner.com/railscasts")
+          channel.should_not_receive(:fetch_and_validate_feed)
+          channel.save
+        end
       end
     end
   end

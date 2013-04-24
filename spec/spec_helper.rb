@@ -12,6 +12,7 @@ require "paperclip/matchers"
 require 'shoulda/matchers/integrations/rspec'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -53,6 +54,8 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    # To ensure no outside HTTP requests to elasticsearch are made when running specs
+    stub_request(:post, /.*localhost:9200\/.*/).to_return(body: "{}")
   end
 
   config.after(:each) do

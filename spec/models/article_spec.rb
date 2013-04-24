@@ -20,36 +20,49 @@ describe Article do
     end
   end
 
-  describe "Instace Methods" do
+  describe "Class Methods" do
     describe "search" do
       before do
-        Article.tire.index.delete
-        Article.create_elasticsearch_index
-
         @article_1 = FactoryGirl.create(:article, description: "Ruby on Rails Chapter #1", published_at: 2.day.ago)
         @article_2 = FactoryGirl.create(:article, description: "Ruby on Rails Chapter #2", published_at: Time.now)
         @article_3 = FactoryGirl.create(:article, description: "Ruby on Rails Chapter #3", published_at: 2.day.from_now)
         @article_4 = FactoryGirl.create(:article, description: "PHP Chapter #3", published_at: 2.day.from_now)
 
-        Article.all.each{ |a| a.tire.update_index }
-        Article.tire.index.refresh
+        mock_request = "{\"query\":{\"query_string\":{\"query\":\"description:Rails\",\"default_operator\":\"AND\"}},\"sort\":[{\"published_at\":\"desc\"}],\"size\":10}"
 
-        @articles = Article.search({query: "Rails"})
+        mock_response = "{\"took\": 9,\"timed_out\": false,
+          \"_shards\": {\"total\": 5,\"successful\": 5,\"failed\": 0},\"hits\": {\"total\": 3,\"max_score\": null,
+          \"hits\": ["
+
+        [@article_3, @article_2 , @article_1].each do |a|
+          mock_response << "{\"_index\": \"articles\",\"_type\": \"article\",\"_id\":\"#{a.id}\",\"_source\":#{a.to_json}}"
+          mock_response << "," if a != @article_1
+        end
+
+        mock_response << "]}}"
+
+        stub_request(:get, "http://localhost:9200/articles/article/_search?load=true&size=10").
+          with(body: mock_request,
+            headers: {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'124', 'User-Agent'=>'Ruby'}).
+          to_return(status: 200, body: mock_response, headers: {})
       end
 
+      let(:articles) { Article.search({query: "Rails"}) }
+
       it "has resutls" do
-        @articles.count.should == 3
+        articles.count.should == 3
       end
 
       it "returns articles filters by content" do
-        @articles.should include(@article_1)
-        @articles.should include(@article_2)
-        @articles.should include(@article_3)
+        articles.to_a.should include(@article_1)
+        articles.to_a.should include(@article_2)
+        articles.to_a.should include(@article_3)
+        articles.to_a.should_not include(@article_4)
       end
 
       it "roders articles by publication date" do
-        @articles[0].should == @article_3
-        @articles[2].should == @article_1
+        articles.to_a[0].should == @article_3
+        articles.to_a[2].should == @article_1
       end
     end
   end
