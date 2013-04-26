@@ -5,6 +5,8 @@
 # files.
 
 require 'cucumber/rails'
+require "factory_girl/step_definitions"
+require 'webmock/cucumber'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -69,3 +71,6 @@ end
 After do
   OmniAuth.config.test_mode = false
 end
+
+WebMock.disable_net_connect!(allow_localhost: true)
+

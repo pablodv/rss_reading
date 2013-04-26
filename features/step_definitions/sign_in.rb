@@ -12,9 +12,3 @@ And /^I fill in username "([^"]*)" and password "([^"]*)"$/ do |username, passwo
     fill_in "user_password", with: password
   end
 end
-
-When /^I press \"([^"]+)"$/ do |string|
-  within ".navbar-form" do
-    click_button string
-  end
-end

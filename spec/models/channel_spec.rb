@@ -33,7 +33,7 @@ describe Channel do
   describe "Callbacks" do
     describe "Before Validation" do
       before do
-        raw_response_file = File.open(File.join(Rails.root, "spec/support/feed.xml"))
+        raw_response_file = File.open(File.join(Rails.root, "spec/support/railscasts.xml"))
         stub_request(:get, "http://feeds.feedburner.com/railscasts").to_return(body: raw_response_file)
       end
 
