@@ -7,6 +7,10 @@ gem 'jquery-rails'
 
 gem 'pg'
 
+group :production do
+  gem "passenger"
+end
+
 group :test do
   gem "cucumber-rails", require: false
   gem "capybara"
@@ -51,3 +55,7 @@ gem "feedzirra"
 gem 'whenever', require: false
 
 gem "tire"
+
+#Deployment gems
+gem "capistrano"
+gem "rvm-capistrano"
