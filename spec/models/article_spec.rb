@@ -4,6 +4,7 @@ describe Article do
   describe "Associations" do
     it { should belong_to :channel }
     it { should have_many :users_articles }
+    it { should have_many :comments }
   end
 
   describe "Validations" do

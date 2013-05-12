@@ -6,6 +6,7 @@ describe User do
     it { should have_many(:channels) }
     it { should have_many(:users_articles) }
     it { should have_many(:favorites).through(:users_articles) }
+    it { should have_many(:comments) }
   end
 
   describe "Validations" do

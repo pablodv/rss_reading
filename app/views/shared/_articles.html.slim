@@ -10,6 +10,11 @@ table.table.table-condensed.table-hover
       td= link_to article.link, target: "_blank" do
         i.icon-resize-full
     tr.child.hide
-      td{ colspan=4 }= article.description
+      td{ colspan=4 class=article.id }
+        = article.description
+        br
+        .comments= render partial: "comments/comment", collection: article.comments
+
+        =link_to "Add comment", new_user_article_comment_path(current_user, article), remote: true
 
 = javascript_tag "showDescription();"

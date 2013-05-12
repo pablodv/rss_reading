@@ -9,6 +9,10 @@ RssReading::Application.routes.draw do
       resources :articles, only: [:index]
     end
 
+    resources :articles, only: [] do
+      resources :comments, only: [:new, :create]
+    end
+
     resources :favorites, only: [:index]
   end
 

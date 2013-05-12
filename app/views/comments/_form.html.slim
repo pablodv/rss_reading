@@ -1,0 +1,5 @@
+= form_for [current_user, @article, @comment], remote: true, html: { class: "form-horizontal" } do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :article_id, value: @article.id
+  = f.text_area :body, rows: 5
+  = f.button "Post comment", class: "btn btn-success"

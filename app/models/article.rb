@@ -3,6 +3,7 @@ require 'valid_formats'
 class Article < ActiveRecord::Base
   belongs_to :channel, counter_cache: true
   has_many :users_articles
+  has_many :comments
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
